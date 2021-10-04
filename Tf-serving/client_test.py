@@ -7,6 +7,7 @@ test_image = Image.open('test_image.jpg')
 pixels = np.array(test_image)/255.0
 
 address = 'http://localhost:8501/v1/models/mnist:predict'
+
 data = json.dumps({'instances':pixels.tolist()})
 
 result = requests.post(address, data=data)
