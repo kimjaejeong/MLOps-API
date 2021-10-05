@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Tf-serving/mnist/1/saved_model.pb
+Tf-serving/mnist/1/variables/variables.data-00000-of-00001
+Tf-serving/mnist/1/variables/variables.index
