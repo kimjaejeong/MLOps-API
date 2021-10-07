@@ -130,3 +130,10 @@ dmypy.json
 Tf-serving/mnist/1/saved_model.pb
 Tf-serving/mnist/1/variables/variables.data-00000-of-00001
 Tf-serving/mnist/1/variables/variables.index
+Fast-api/mnist/1/saved_model.pb
+Fast-api/mnist/1/variables/variables.data-00000-of-00001
+Fast-api/mnist/1/variables/variables.index
+Fast-api/test_image.jpg
+Fast-api/mnist/2/saved_model.pb
+Fast-api/mnist/2/variables/variables.data-00000-of-00001
+Fast-api/mnist/2/variables/variables.index

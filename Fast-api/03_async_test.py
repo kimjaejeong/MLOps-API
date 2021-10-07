@@ -32,13 +32,11 @@ async def process_async():
     end_time = time.time() - start_time
     print(f"비동기 처리 시간: {end_time}")
 
-
-
 if __name__ == "__main__":
     # 동기 프로그램
     # process_sync()
     # 비동기 프로그램
-    # asyncio.run(process_async()) -> 3.7부터 허용
+    # asyncio.run(process_async()) -> py 3.7부터 허용
     loop = asyncio.get_event_loop()
     loop.run_until_complete(process_async())
     
