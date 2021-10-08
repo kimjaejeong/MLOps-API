@@ -1,6 +1,6 @@
 # 2) Prediction Service Class 생성
 import pandas as pd
-
+	
 from bentoml import env, artifacts, api, BentoService
 from bentoml.adapters import DataframeInput
 from bentoml.frameworks.sklearn import SklearnModelArtifact
