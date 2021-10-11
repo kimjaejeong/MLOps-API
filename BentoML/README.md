@@ -10,5 +10,18 @@ A minimum prediction service exposing a Scikit-learn model
 - export BENTOML_HOME='~/workspace/MLOps-API/BentoML/bentoml'
 - bentoml serve IrisClassifier:latest
 - <!-- bentoml serve KbClassifier:latest -->
+- 확인: http://127.0.0.1:5000/
 
+
+# Yatai 실행
+- bentoml yatai-service-start
+- 확인: http://127.0.0.1:3000/
+
+# 도커로 띄우기
+- bentoml containerize KbClassifier:latest -t kb-classifier
+    - docker 권한 문제 해결 필요
+- docker run -it --rm -d -p 5000:5000 [image-id]
+
+# 도커 이미지 전체 삭제
+- docker rmi $(docker images -q)
 
