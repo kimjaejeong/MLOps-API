@@ -1,10 +1,8 @@
-import numpy as np
-import xgboost as xgb
 from imblearn.under_sampling import RandomUnderSampler
 import pandas as pd
+from xgboost import XGBClassifier
 
 def xgboost(x,y,testX,testY):
-    trainD = xgb.DMatrix(x, label = y)
     param = {
         'colsample_bytree': 0.75, 'min_child_weight': 3,
         'eta': 0.3, 
@@ -12,9 +10,10 @@ def xgboost(x,y,testX,testY):
         'objective': 'multi:softprob',  # softmax
         'eval_metric':'mlogloss',
         'num_class': 2}   # class 개수 = 2개 (binary class classification)
-    model = xgb.train(params = param, dtrain = trainD, num_boost_round = 20)
+    sklearn_xgboost_model = XGBClassifier(params = param)
+    sklearn_xgboost_model.fit(x, y)
 
-    return model
+    return sklearn_xgboost_model
 
 def get_dummies(df,dummy_list):
     if not dummy_list:
@@ -47,7 +46,7 @@ def randomunder_ratio(i):
 
 def kb_classifier(model):
     # import the IrisClassifier class defined above
-    from b_kb_classifier import KbClassifier
+    from c_kb_classifier import KbClassifier
 
     # Create a iris classifier service instance
     kb_classifier_service = KbClassifier()
@@ -122,9 +121,9 @@ if __name__ == "__main__":
     model = randomunder_ratio(4)
 
     # fastapi를 위한 model 저장 
-    # save_path = '~/workspace/MLOps-API/Fast-api/model/'
-    # filename = 'xgb_model.model'
-    # model.save_model(save_path + filename)
+    save_path = '~/workspace/MLOps-API/Fast-api/model/'
+    filename = 'xgb_model.model'
+    model.save_model(save_path + filename)
 
     # 모델 배포 - bentoml을 활용한 classifer 모델 생성
     kb_classifier(model)
