@@ -6,9 +6,6 @@ to create this bundle, and save a new BentoService bundle.
 
 A minimum prediction service exposing a Scikit-learn model
 
-# anaconda 경로 설정
-- export PATH=~/anaconda3/bin:$PATH
-
 # bentoml 실행
 - export BENTOML_HOME='~/workspace/MLOps-API/BentoML/bentoml'
 - bentoml serve IrisClassifier:latest

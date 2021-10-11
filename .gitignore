@@ -307,3 +307,4 @@ BentoML/bentoml/repository/KbClassifier/20211011095127_081B44/KbClassifier/c_kb_
 BentoML/bentoml/repository/KbClassifier/20211011095127_081B44/KbClassifier/artifacts/__init__.py
 BentoML/bentoml/repository/KbClassifier/20211011095127_081B44/KbClassifier/artifacts/model.pkl
 Fast-api/model/xgb_model.model
+BentoML/bentoml/logs/prediction.log.1
