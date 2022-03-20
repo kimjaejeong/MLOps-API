@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  mlflow:
+    image: 'atcommons/mlflow-server'
+    build: .
+    ports:
+      - "42023:5000"
+    volumes:
+      - "./data:/mlflow"
+    environment:
+      BACKEND_URI: sqlite:////mlflow/mlflow.db
+      ARTIFACT_ROOT: /mlflow/artifacts
