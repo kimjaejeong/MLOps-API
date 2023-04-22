@@ -1,7 +1,6 @@
 # from pandas.core.frame import DataFrame
 from fastapi import FastAPI, Body
 from pydantic import BaseModel
-from xgboost import XGBClassifier
 
 app = FastAPI()
 
