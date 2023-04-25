@@ -1,0 +1,9 @@
+FROM tensorflow/serving
+
+COPY ./saved_model /models/test_model
+
+ENV MODEL_NAME test_model
+
+EXPOSE 8500
+
+CMD tensorflow_model_server --port=8500 --model_name=$MODEL_NAME --model_base_path=/models/$MODEL_NAME
