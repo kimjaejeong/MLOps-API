@@ -4,5 +4,5 @@ from pydantic import BaseModel
 
 app = FastAPI()
 @app.get("/")
-def root():
-    return HTTPException(status_code=500, detail="Internal Server Error")
+async def root():
+    raise HTTPException(status_code=500, detail="Internal Server Error")
