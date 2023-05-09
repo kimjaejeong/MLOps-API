@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+// 서비스 이름은 Greeter로 합시다.
+service Greeter {
+  // greeting에 대한 메서드로 SayHello로 정의하고, 서버 사이드에서 이 메서드를 구현해줍시다.
+  rpc SayHello (HelloRequest) returns (HelloReply) {}
+
+  rpc SayHelloAgain (HelloRequest) returns (HelloReply) {}
+}
+
+// 호출시 사용하는 메시지 형식을 지정합니다.
+message HelloRequest {
+  string name = 1;
+}
+
+// 응답시 사용하는 메시지 형식을 지정합니다.
+message HelloReply {
+  string message = 1;
+}
