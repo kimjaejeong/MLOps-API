@@ -1,0 +1,3 @@
+- 참고자료
+  - https://github.com/silverstar0727/multi-video-stream-processing-with-ml/tree/main/grpc_server
+- 
