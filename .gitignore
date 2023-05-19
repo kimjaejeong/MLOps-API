@@ -183,3 +183,4 @@ BentoML/bentoml/
 .gitignore
 data/train_TEL_MBSP_GRAD.csv
 Fast-api/model/xgb_model.model
+models/
