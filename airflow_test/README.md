@@ -1,0 +1,3 @@
+- 참고자료
+  - https://velog.io/@clueless_coder/Airflow-%EC%97%84%EC%B2%AD-%EC%9E%90%EC%84%B8%ED%95%9C-%ED%8A%9C%ED%86%A0%EB%A6%AC%EC%96%BC-%EC%99%95%EC%B4%88%EC%8B%AC%EC%9E%90%EC%9A%A9
+- dags에 있는 폴더는 ~/airflow/dags의 하위로 넣고 airflow webserver로 재실행
