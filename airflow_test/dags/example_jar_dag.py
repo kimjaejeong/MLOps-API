@@ -38,7 +38,7 @@ with DAG(**dag_args) as dag:
 
     exec_jar = BashOperator(
         task_id='api_jar_test',
-        bash_command='../'
+        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
     )
 
     complete = BashOperator(
