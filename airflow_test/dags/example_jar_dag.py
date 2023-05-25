@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from textwrap import dedent
 
+import requests
 from airflow import DAG
 
 # Operators; we need this to operate!
@@ -30,14 +31,39 @@ dag_args = dict(
 )
 
 
+# 외부 url call
+def call_url():
+    url = "http://<외부url>:<port>"
+    requests.post(url)
+
+
 with DAG(**dag_args) as dag:
     start = BashOperator(
         task_id='start',
         bash_command='echo "start!"',
     )
 
-    exec_jar = BashOperator(
-        task_id='api_jar_test',
+    msg = PythonOperator(
+        task_id='call_url',
+        python_callable=call_url,
+        trigger_rule=TriggerRule.NONE_FAILED
+    )
+
+    # public cloud 배치1
+    exec_jar1 = BashOperator(
+        task_id='api_jar_test1',
+        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
+    )
+
+    # public cloud 배치2
+    exec_jar2 = BashOperator(
+        task_id='api_jar_test2',
+        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
+    )
+
+    # public cloud 배치3
+    exec_jar3 = BashOperator(
+        task_id='api_jar_test3',
         bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
     )
 
@@ -48,4 +74,4 @@ with DAG(**dag_args) as dag:
         trigger_rule=TriggerRule.NONE_FAILED
     )
 
-    start >> exec_jar >> complete
+    start >> exec_jar1 >> exec_jar2 >> exec_jar3 >> complete

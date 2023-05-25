@@ -3,3 +3,8 @@
   - https://passwd.tistory.com/m/entry/Apache-Airflow-%EC%84%A4%EC%B9%98
 
 - 스케줄 관련 .py를 ~/airflow/dags 하위에 넣고 airflow webserver로 재실행
+
+
+- 스케줄 시나리오
+  - 외부 url call
+  - 내부 jar 파일 실행
