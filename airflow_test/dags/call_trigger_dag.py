@@ -22,20 +22,31 @@ default_args = {
 }
 
 dag_args = dict(
-    dag_id="jar-test",
+    dag_id="call_trigger-test",
     default_args=default_args,
-    description='test DAG java',
+    description='test DAG python',
     schedule_interval=timedelta(minutes=50),
-    start_date=datetime(2023, 5, 25),
+    start_date=datetime(2023, 6, 1),
     tags=['example-sj'],
 )
 
+def call_fast_api():
+    import requests
 
-# 외부 url call
-def call_url():
-    url = "http://<외부url>:<port>"
-    requests.post(url)
+    address_istio_gateway = 'http://34.68.103.239:80/'  # ingress gateway 주소
+    result = requests.get(address_istio_gateway)
+    print(result.text)
 
+def call_torch_serving():
+    import requests
+
+    address_istio_gateway = 'http://34.68.103.239:80/predictions/densenet161'
+    file_path = '../kitten.jpg'
+
+    with open(file_path, 'rb') as f:
+        response = requests.post(address_istio_gateway, data=f)
+
+    print(response.content)
 
 with DAG(**dag_args) as dag:
     start = BashOperator(
@@ -43,35 +54,26 @@ with DAG(**dag_args) as dag:
         bash_command='echo "start!"',
     )
 
-    msg = PythonOperator(
-        task_id='call_url',
-        python_callable=call_url,
+    exec_trigger_1 = PythonOperator(
+        task_id='complete_py',
+        python_callable=call_fast_api,
         trigger_rule=TriggerRule.NONE_FAILED
     )
 
-    # public cloud 배치1
-    exec_jar1 = BashOperator(
-        task_id='api_jar_test1',
-        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
-    )
-
-    # public cloud 배치2
-    exec_jar2 = BashOperator(
-        task_id='api_jar_test2',
-        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
-    )
-
-    # public cloud 배치3
-    exec_jar3 = BashOperator(
-        task_id='api_jar_test3',
-        bash_command='java -jar ../api-0.0.1-SNAPSHOT.jar'
+    exec_trigger_2 = PythonOperator(
+        task_id='complete_py',
+        python_callable=call_torch_serving,
+        trigger_rule=TriggerRule.NONE_FAILED
     )
 
     complete = BashOperator(
-        task_id='complete_bash',
+        task_id='complete ',
         depends_on_past=False,
         bash_command='echo "complete~!"',
         trigger_rule=TriggerRule.NONE_FAILED
     )
 
-    start >> exec_jar1 >> exec_jar2 >> exec_jar3 >> complete
+    start >> exec_trigger_1 >> exec_trigger_2 >> complete
+
+
+
