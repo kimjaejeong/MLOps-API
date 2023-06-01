@@ -55,13 +55,13 @@ with DAG(**dag_args) as dag:
     )
 
     exec_trigger_1 = PythonOperator(
-        task_id='complete_py',
+        task_id='fast_api_py',
         python_callable=call_fast_api,
         trigger_rule=TriggerRule.NONE_FAILED
     )
 
     exec_trigger_2 = PythonOperator(
-        task_id='complete_py',
+        task_id='torch_serve_py',
         python_callable=call_torch_serving,
         trigger_rule=TriggerRule.NONE_FAILED
     )
