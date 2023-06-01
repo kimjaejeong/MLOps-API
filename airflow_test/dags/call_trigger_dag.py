@@ -1,14 +1,13 @@
 from datetime import datetime, timedelta
 from textwrap import dedent
 
-import requests
 from airflow import DAG
 
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
-from airflow.operators.dummy import DummyOperator
-from airflow.operators.python import BranchPythonOperator
-from airflow.operators.python_operator import PythonOperator
+# from airflow.operators.dummy import DummyOperator
+from airflow.operators.python import BranchPythonOperator, PythonOperator
+# from airflow.operators.python_operator import PythonOperator
 from airflow.utils.trigger_rule import TriggerRule
 
 default_args = {
@@ -74,6 +73,3 @@ with DAG(**dag_args) as dag:
     )
 
     start >> exec_trigger_1 >> exec_trigger_2 >> complete
-
-
-
