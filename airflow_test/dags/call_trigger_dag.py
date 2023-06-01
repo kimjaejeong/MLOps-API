@@ -67,7 +67,7 @@ with DAG(**dag_args) as dag:
     )
 
     complete = BashOperator(
-        task_id='complete ',
+        task_id='complete',
         depends_on_past=False,
         bash_command='echo "complete~!"',
         trigger_rule=TriggerRule.NONE_FAILED
