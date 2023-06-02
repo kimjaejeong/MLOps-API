@@ -11,9 +11,9 @@ from airflow.operators.python import BranchPythonOperator, PythonOperator
 from airflow.utils.trigger_rule import TriggerRule
 
 default_args = {
-    'owner': 'owner-name',
+    'owner': 'simon',
     'depends_on_past': False,
-    'email': ['your-email@g.com'],
+    'email': ['admin@admin.com'],
     'email_on_failure': False,
     'email_on_retry': False,
     'retries': 1,

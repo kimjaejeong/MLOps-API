@@ -1,3 +1,8 @@
+- dag파일
+  - call_trigger_dag.py
+    - api call 하기 위한 스케줄러
+  - run_jar_dag.py
+    - jar 파일 실행을 위한 스케줄러
 - 참고자료
   - https://github.com/lsjsj92/airflow_tutorial 
   - https://passwd.tistory.com/m/entry/Apache-Airflow-%EC%84%A4%EC%B9%98
